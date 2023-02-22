@@ -1,0 +1,47 @@
+ .containerfactura{
+    margin: 70px;
+
+
+ }
+ 
+ #factura_component{  
+   margin-top: 50px;
+   margin-left: 150px; 
+   border-radius: 8px;
+   width: 600px;    
+    background: whitesmoke;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.49); 
+    
+
+ }
+
+ 
+
+
+ .enviar{
+    
+   display: flex;
+   justify-content: space-between;
+   gap: 300px;
+   
+   
+ }
+
+ 
+
+
+
+
+ 
+
+   
+
+
+
+
+#footer_fa{
+  padding: 10px;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    color: white;
+}
+
