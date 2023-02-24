@@ -6,7 +6,7 @@ import './factura.css';
 import { Button } from 'reactstrap';
 import { cop } from '../../utils/i18';
 import notify from '../../utils/notify';
-import { useNavigate } from "react-router-dom";
+/* import { useNavigate } from "react-router-dom"; */
 
 const DATA = {
     id_cotizacion: 0, valor: 0, vendedor: "", cliente: "", client_email: '', products: []
@@ -39,15 +39,16 @@ const Factura = () => {
         }
         button.style.display = 'block'
     }
-    const navigate=useNavigate();
+  /*   const navigate=useNavigate();
 
     function atras() {
       navigate("/cotizaciones")  
    
     }
-
+ */
     return (
-        <div id='factura_component' className="col-6">
+        <div id='factura_component'>
+            <div className='factura'>
           <div className='enviar'>
           <div className='d-flex justify-content-start m-3'>
                 <Button
@@ -61,22 +62,24 @@ const Factura = () => {
             </div>
           
             <div className='d-flex justify-content-start m-3'>
-                <Button
+             {/*    <Button
                  className="btn btn-outline-secondary"
                     id='button_send'                  
                     outline
                     onClick={() => atras()}
                 >Cotizaciones
                     
-                </Button>
+                </Button> */}
             </div>
-            </div>
-            <h3>Factura de venta</h3>
+            </div >
+            <div className="infolocal">
+            <p>Factura de venta</p>
             <h4>CRM PRODCUTS SA</h4>
-                        <p>Av. Winston Churchill</p>
-                        <p>Plaza Orleans 3er. nivel</p>
+                        <p>Av. Winston Churchill, Plaza Orleans 3er. nivel</p>
                         <p>local 312</p>
-                        <hr />
+                        
+            </div>   
+
             <div className="row fact-info mt-3">
                 <div className="col-3">
                     <h5>Facturar a</h5>
@@ -88,8 +91,8 @@ const Factura = () => {
                 </div>
                 <div className="col-3">
                     <h5>N° de factura</h5>
-                    <h5>Fecha</h5>
-                    <h5>Vence</h5>
+                    <p>Fecha</p>
+                    <p>Vence</p>
                 </div>
                 <div className="col-3">
                     <h5>{data.id_cotizacion}</h5>
@@ -130,18 +133,16 @@ const Factura = () => {
                 </table>
             </div>
             <div id="footer_fa">
-                <div className="col-12 mt-3">
+                <div className="footer_fa">
                     <h4>Condiciones y formas de pago</h4>
-                    <p>El pago se debe realizar en un plazo de 15 dias.</p>
-                    <p>
-                        Banco de Bogota
-                        <br />
-                        IBAN: 4558-4535-4253-42
-                        <br />
-                        Código SWIFT: BB84856SF
+                    <p>El pago se debe realizar en un plazo de 15 dias.<br/>
+                    Banco de Bogota<br/>
+                     BAN: 4558-4535-4253-42<br/>
+                    Código SWIFT: BB84856SF
                     </p>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

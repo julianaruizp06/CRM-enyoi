@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
 import Grafica from "./Grafica";
+import Header from "./Header";
+import {AiOutlineUser} from "react-icons/ai";
+
 
 
 const Dashboard = (props) => { 
@@ -33,6 +36,13 @@ const navigate=useNavigate();
     }
   
     return (
+      
+      <div>
+        <div >
+          <Header/>
+        </div>
+    
+
       <div className="dash">
 
         <div className="barralateral">
@@ -40,11 +50,19 @@ const navigate=useNavigate();
 
        
 
-<div className="header">   
-            
-              Bienvenido:<br/>
-               {props.user.name}<br/>
-               Administrador
+<div className="header">  
+
+            <div className="icono">
+           <div className="iconos">
+          <AiOutlineUser/> 
+          </div>
+          <div className="iconos">
+         Administrador: {props.user.name}<br/>   
+          </div>
+         
+
+          </div> 
+              
                  
       </div>
 
@@ -88,7 +106,7 @@ const navigate=useNavigate();
              onClick={cerrarSesion}
            >
            
-             Cerrar Sesión
+            Cerrar sesion
            </a>             
    
    </nav>
@@ -106,8 +124,9 @@ const navigate=useNavigate();
      </div>
    
   
-     
+     </div>
     
+      
       </div>
   
       

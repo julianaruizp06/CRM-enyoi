@@ -316,10 +316,12 @@ const searchUser=({target})=>{
                 </label>
                 <input
                   className="form-control"
+                  pattern="[A-Z]"
                   type="text"
                   name="nombre"
                   id="nombre"                  
-                   onChange={handleInputChange}/>
+                   onChange={handleInputChange}
+                   required/>
                 </div>
                 <br/>
 
@@ -354,11 +356,17 @@ const searchUser=({target})=>{
                     <strong>Número de documento</strong>
                   </label>
                   <input 
+                   pattern="[0-9]" 
+                   maxlength="10"
+
+
                     className="form-control"
-                    type="text"
+                    type="number"
                     name="num_documento"
                     id="num_documento"
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    required/>
+                   
                 </div>
                 </div>
                 <br/>
@@ -404,6 +412,7 @@ const searchUser=({target})=>{
                   type="email"
                   name="email"
                   id="email"
+                  placeholder="usuario@ejemplo.com"
                    onChange={handleInputChange}/>
                    </div>
                    </div>
@@ -522,11 +531,12 @@ const searchUser=({target})=>{
                   </label>
                   <input
                     className="form-control"
-                    type="text"
+                    type="number"
                     name="num_documento"
                     id="num_documento"
                     onChange={handleInputChange}
                     value={selected.num_documento}
+                    required
                   />
                 </div>
                 <label htmlFor="direccion">
@@ -539,6 +549,7 @@ const searchUser=({target})=>{
                   id="direccion"
                   onChange={handleInputChange}
                   value={selected.direccion}
+                  required
                 />
                 <br />
                 <label htmlFor="telefono">
@@ -546,7 +557,7 @@ const searchUser=({target})=>{
                 </label>
                 <input
                   className="form-control"
-                  type="text"
+                  type="number"
                   name="telefono"
                   id="telefono"
                   onChange={handleInputChange}

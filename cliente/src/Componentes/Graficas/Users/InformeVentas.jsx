@@ -24,6 +24,7 @@ const DIAGRAM = {
             label: 'ventas totales',
             backgroundColor: 'violet',
             
+            
 
 
         }
@@ -40,6 +41,7 @@ const InformeVentas = ({ items, labels }) => {
                 label: 'ventas totales',
                 backroundColor: 'rgba(255, 99, 132, 0.5)',             
                 data: items
+                
             }]
         })
     }, [items, labels])

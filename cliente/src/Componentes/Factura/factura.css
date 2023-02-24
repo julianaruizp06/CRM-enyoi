@@ -5,6 +5,8 @@
  }
  
  #factura_component{  
+  
+  position: center;
    margin-top: 50px;
    margin-left: 150px; 
    border-radius: 8px;
@@ -15,6 +17,16 @@
 
  }
 
+ .factura{
+  padding: 20px;
+  justify-content: center;
+ }
+.infolocal{
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+ 
+}
  
 
 
@@ -26,22 +38,21 @@
    
    
  }
-
- 
-
-
-
-
- 
-
-   
+  
 
 
 
 
 #footer_fa{
-  padding: 10px;
-    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  color: white;
+  font-size: 8px;
+   
 }
+
+
 

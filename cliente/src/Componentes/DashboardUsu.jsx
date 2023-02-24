@@ -1,66 +1,126 @@
 import React from "react";
-import  { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Grafica from "./Grafica";
-
-const DashboardUsu = (props) => {
-  const navigate = useNavigate();
-
-  function cerrarSesion() {
-    navigate("/")
-
-  }
+import Header from "./Header";
+import {AiOutlineUser} from "react-icons/ai";
 
 
 
-  function vistaClientes() {
-    navigate("/clientes")
+const Dashboard = (props) => { 
+console.log("🚀 ~ file: Dashboard.jsx:5 ~ Dashboard ~ props", props)
+const navigate=useNavigate();
 
-  }
+    function cerrarSesion() {
+      navigate("/")  
+   
+    }
 
-  function vistaArticulos() {
-    navigate("/articulos")
-
-  }
-  function vistaCotizacion() {
-    navigate("/cotizaciones")
-
-  }
-
-  return (
+  
 
 
-    
-    <div id="caja_menu" style={{ textAlign: "left" }}>
+    function vistaClientes() {
+      navigate("/clientes")  
+   
+    }
 
-      <div className="titulo " style={{ color:"white", marginTop:80}}>
-
-        <strong className="h3"  style={{ color:"white"}}>
-          Bienvenido Usuario: {props.user.name} 
-        </strong>
-
-     </div>
-
-
-
-      <nav className="navbar navbar-expand-lg navbar-light " style={{ marginTop: 20 }}>
-        <div className="container-fluid" >
-
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup"  >
-            <div className="navbar-nav" >
-              <a className="nav-link  h5  text-center" style={{ color: "white" }} href=" " onClick={vistaClientes} >Clientes</a>
-              <a className="nav-link  h5  text-center" style={{ color: "white" }} href=" " onClick={vistaArticulos} >Articulos</a>
-              <a className="nav-link  h5  text-center" style={{ color: "white" }} href=" " onClick={vistaCotizacion} >Cotizaciones</a>
-              <a className="nav-link  h5  text-center" style={{ color: "yellow" }} href=" " onClick={cerrarSesion} >Cerrar Sesión</a>
-            </div>
-          </div>
+    function vistaArticulos() {
+      navigate("/articulos")  
+   
+    }
+    function vistaCotizacion() {
+      navigate("/cotizaciones")  
+   
+    }
+  
+    return (
+      
+      <div>
+        <div >
+          <Header/>
         </div>
-      </nav>
-      <div >
+    
 
-      <Grafica></Grafica>
+      <div className="dash">
+
+        <div className="barralateral">
+
+
+       
+
+<div className="header">  
+
+            <div className="icono">
+           <div className="iconos">
+          <AiOutlineUser/> 
+          </div>
+          <div className="iconos">
+          Usuario:{props.user.name}<br/>   
+          </div>
+         
+
+          </div> 
+              
+                 
       </div>
-    </div>
 
-  )
+
+<div className="nav">
+
+
+<nav className="nav">
+      
+           <a
+            
+             href=" "
+             onClick={vistaClientes}
+           >
+             Clientes
+           </a>
+           <a
+         
+             href=" "
+             onClick={vistaArticulos}
+           >
+             Articulos
+           </a>
+           <a
+             
+             href=" "
+             onClick={vistaCotizacion}
+           >
+            
+             Cotizaciones
+           </a>
+           <a
+          
+             href=" "
+             onClick={cerrarSesion}
+           >
+           
+            Cerrar sesion
+           </a>             
+   
+   </nav>
+   </div>
+ 
+
+
+   </div>
+        
+         
+      
+      
+     <div className="grafica">
+      <Grafica></Grafica>
+     </div>
+   
+  
+     </div>
+    
+      
+      </div>
+  
+      
+    );
 }
-export default DashboardUsu;
+export default Dashboard;

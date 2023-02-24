@@ -11,6 +11,7 @@ import './App.css';
 import { getLocalStorage, types } from './utils/localStorage';
 import Factura from './Componentes/Factura/Factura';
 
+
 const usuario = getLocalStorage(types.USER) || {};
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/articulos" element={<Articulos user={user}/>} />
           <Route exact path="/cotizaciones" element={<Cotizaciones user={user}/>} />
           <Route exact path="/factura/:id" element={<Factura user={user}/>} />
+          
         </Routes>
       </BrowserRouter>
     </div>
