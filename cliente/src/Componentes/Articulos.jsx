@@ -140,25 +140,16 @@ const searchUser=({target})=>{
     setModaledit(!modaledit);
   }
 
-  const [user, setUser] = React.useState("")
-
-  const getUser = () => {
-    const user = localStorage.getItem('USER')
-    setUser(user)
-    }
-
-    useEffect(() => {
-     ;
-      getUser();
-      }, [user]);
+  
 
       const navigate=useNavigate();
 
 
       function atras() {
-          console.log(user)    
+
+          console.log(99,props.user)    
     
-        if (user.rol === 1) {
+        if (props.user.rol === 1) {
           navigate("/homea");
         } else {
           navigate("/homeu");

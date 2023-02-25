@@ -387,7 +387,7 @@ const Cotizacion = (props) => {
           
             <Button className="agregarArM" onClick={() => agreArt()}>+ Agregar Articulo</Button>
 
-         {/*    <div className="col-md-4">                  
+           <div className="col-md-4">                  
                 <div id="oplogin"className="descuento">
                   <label>
                     <strong> Descuento </strong>
@@ -402,10 +402,10 @@ const Cotizacion = (props) => {
                     </option>
                     <option value="0,2">20 %</option>
                     <option value="0,3">30 %</option> 
-                    <option value="0,5">50 5</option>                   
+                    <option value="0,5">50 %</option>                   
                   </select>
                   </div>           
-              </div> */}
+              </div> 
           
           <ModalBody>
             <div className="form-group">
