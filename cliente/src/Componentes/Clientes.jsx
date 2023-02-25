@@ -112,26 +112,16 @@ const searchUser=({target})=>{
   }
  
     
-  const [userlocal, setUserlocal] = React.useState("")
-
-  const getUserlocal = () => {
-    const userlocal = localStorage.getItem('USER')
-    setUserlocal(userlocal)
-    }
-
-    useEffect(() => {
-      listarCliente();
-      getUserlocal();
-      }, [userlocal]);
+  
 
       const navigate=useNavigate();
 
        function atras() {   
         
-        console.log(userlocal.id)
+        
     
         
-        if (userlocal.id === 1) {
+        if (props.user.rol === 1) {
           navigate("/homea");
         } else {
           navigate("/homeu");
@@ -139,7 +129,7 @@ const searchUser=({target})=>{
       }
     
     
-      console.log(USER)
+    
 
 
 

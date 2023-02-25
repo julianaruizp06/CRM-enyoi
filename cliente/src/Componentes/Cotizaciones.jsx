@@ -244,25 +244,14 @@ const Cotizacion = (props) => {
   
 
  
-   
-  const [userlocal, setUserlocal] = React.useState("")
-
-  const getUserlocal = () => {
-    const userlocal = localStorage.getItem('USER')
-    setUserlocal(userlocal)
-    }
-
-    useEffect(() => {
-      
-      getUserlocal();
-      }, [userlocal]);
+ 
 
        function atras() {   
         
-        console.log(userlocal.id)
+    
     
         
-        if (userlocal.id === 1) {
+        if (props.user.rol === 1) {
           navigate("/homea");
         } else {
           navigate("/homeu");
