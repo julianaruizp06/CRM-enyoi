@@ -12,7 +12,8 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete , AiOutlineUserAdd,AiOutlineHome} from "react-icons/ai";
 
 import notify from "../utils/notify";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { setLocalStorage, types } from "../utils/localStorage";
 
 
 const USER = {
@@ -110,11 +111,35 @@ const searchUser=({target})=>{
   
   }
  
+    
+  const [userlocal, setUserlocal] = React.useState("")
 
-  useEffect(() => {
-    listarCliente();
-   
-  }, []);
+  const getUserlocal = () => {
+    const userlocal = localStorage.getItem('USER')
+    setUserlocal(userlocal)
+    }
+
+    useEffect(() => {
+      listarCliente();
+      getUserlocal();
+      }, [userlocal]);
+
+      const navigate=useNavigate();
+
+       function atras() {   
+        
+        console.log(userlocal.id)
+    
+        
+        if (userlocal.id === 1) {
+          navigate("/homea");
+        } else {
+          navigate("/homeu");
+        }
+      }
+    
+    
+      console.log(USER)
 
 
 
@@ -137,12 +162,7 @@ const searchUser=({target})=>{
     setModaledit(!modaledit);
   }
 
-  const navigate=useNavigate();
 
-  function atras() {
-    navigate("/homea")  
- 
-  }
 
   return (
     <div className="container-sm">
@@ -155,7 +175,7 @@ const searchUser=({target})=>{
         </p>
      
       <div className="agregarUsuario">
-      <Button id="home" className="btn btn-light "  onClick={() => atras()}><AiOutlineHome/>Inicio</Button>
+      <Button id="home" className="btn btn-light "  onClick={atras}><AiOutlineHome/>Inicio</Button>
 
       
        </div>

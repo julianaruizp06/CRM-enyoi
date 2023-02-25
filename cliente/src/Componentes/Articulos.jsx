@@ -11,6 +11,10 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete , AiOutlineUserAdd} from "react-icons/ai";
 
+import { setLocalStorage, types } from "../utils/localStorage";
+
+
+
 import notify from "../utils/notify";
 
 import { useNavigate } from "react-router-dom"
@@ -136,12 +140,31 @@ const searchUser=({target})=>{
     setModaledit(!modaledit);
   }
 
-  const navigate=useNavigate();
+  const [user, setUser] = React.useState("")
 
-  function atras() {
-    navigate("/homea")  
- 
-  }
+  const getUser = () => {
+    const user = localStorage.getItem('USER')
+    setUser(user)
+    }
+
+    useEffect(() => {
+     ;
+      getUser();
+      }, [user]);
+
+      const navigate=useNavigate();
+
+
+      function atras() {
+          console.log(user)    
+    
+        if (user.rol === 1) {
+          navigate("/homea");
+        } else {
+          navigate("/homeu");
+        }
+      }
+
   return (
     <div className="container-sm">
     <header className="header_u" style={{ color: "white", marginTop: 40, marginBottom:40}}>

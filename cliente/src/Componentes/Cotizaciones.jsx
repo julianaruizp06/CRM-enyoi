@@ -16,6 +16,7 @@ import notify from "../utils/notify";
 
 import { useNavigate } from "react-router-dom";
 import Edit from "./Modals/Cotizaciones/Edit";
+import { setLocalStorage, types } from "../utils/localStorage";
 
 const USER = {
   iddetalle: "",
@@ -191,7 +192,7 @@ const Cotizacion = (props) => {
     }
   };
 
-  //ELIMINAR FILAS DE LA TABL AGREGAR ARTICULOS
+  //ELIMINAR FILAS DE LA TABLA  AGREGAR ARTICULOS
   const eliminarLisArt = (id) => {
     setListar(listAr.filter((item) => item.id !== id));
   };
@@ -203,9 +204,6 @@ const Cotizacion = (props) => {
   };
 
 
-  function atras() {
-    navigate("/homea");
-  }
 
   //funcion  para identificar el precio del articulo
 
@@ -240,6 +238,55 @@ const Cotizacion = (props) => {
     );
     setListar(lista);
   };
+
+
+  //funcion atras
+  
+
+ 
+   
+  const [userlocal, setUserlocal] = React.useState("")
+
+  const getUserlocal = () => {
+    const userlocal = localStorage.getItem('USER')
+    setUserlocal(userlocal)
+    }
+
+    useEffect(() => {
+      
+      getUserlocal();
+      }, [userlocal]);
+
+       function atras() {   
+        
+        console.log(userlocal.id)
+    
+        
+        if (userlocal.id === 1) {
+          navigate("/homea");
+        } else {
+          navigate("/homeu");
+        }
+      }
+    
+    
+      
+
+
+
+
+         
+    
+      
+
+   
+
+      
+    
+    
+
+
+  
 
   return (
     <div className="container-sm">

@@ -57,7 +57,7 @@ const validarLogin = async (req, res) => {
     }else{
      
       console.log("datos incorrectos")
-      res.send(res.json({respuesta:false}));
+      res.json({respuesta:false});
       }
   }
   

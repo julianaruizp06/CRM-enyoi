@@ -12,6 +12,7 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete , AiOutlineUserAdd} from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom"
+import { setLocalStorage, types } from "../utils/localStorage";
 
 
 import notify from "../utils/notify"
@@ -192,13 +193,37 @@ const searchUser=({target})=>{
     setModalLogin(!modalogin);
   }
 
-  const navigate=useNavigate();
+  const [user, setUser] = React.useState("")
 
+  const getUser = () => {
+    const user = localStorage.getItem('USER')
+    setUser(user)
+    }
+
+    useEffect(() => {
+     ;
+      getUser();
+      }, [user]);
+
+      const navigate=useNavigate();
+
+
+
+
+  function atras() {  
+
+    console.log(user.rol)
+  
+      navigate("/homea");
+  }
+    
+
+/* 
     function atras() {
       navigate("/homea")  
    
     }
-    
+     */
 
 
   return (
@@ -221,7 +246,7 @@ const searchUser=({target})=>{
         </p>
 
       <div className="agregarUsuario">
-      <Button id="home" className="btn btn-light "  onClick={() => atras()}> Inicio</Button>
+      <Button id="home" className="btn btn-light " onClick={atras}> Inicio</Button>
 
       </div>
 

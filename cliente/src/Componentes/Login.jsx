@@ -26,6 +26,11 @@ function Login(props) {
       console.log("no enviar");
     } else {
       let res = await axios.post("http://localhost:3001/login", datos);
+      if(res.data.respuesta===false){
+        
+        datosinco();
+      }
+
       const data = res.data;
       const user = {
         name: data.nDatos.userId,
@@ -33,8 +38,11 @@ function Login(props) {
         id: data.nDatos.id,
         rol: data.idrol
       };
+
+      console.log(res)
       props.setUser(user);     
       setLocalStorage(types.USER, user) 
+     
       if (res.data.respuesta === true) {
         localStorage.setItem("tokenjwt", res.data.nDatos.token);
         if (res.data.idrol === 1) {
@@ -42,12 +50,13 @@ function Login(props) {
         } else {
           navigate("/homeu");
         }
-      } else {
-        
-       res.message("Datos incorrectos");
-      }
-    }
-  };
+      }  
+ }
+      
+   
+    };
+  
+  
 
   return (
     <section className="h-100">
