@@ -125,9 +125,7 @@ const searchUser=({target})=>{
 
        function atras() {   
         
-        
-    
-        
+               
         if (props.user.rol === 1) {
           navigate("/homea");
         } else {

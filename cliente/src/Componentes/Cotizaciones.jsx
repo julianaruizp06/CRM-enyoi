@@ -405,28 +405,49 @@ const setCosto_envio =(valor)=>{
           ))}
         </tbody>
       </table>
-      <div>
+      <div className="modalcotiza">
+        
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Crear Cotizacion</ModalHeader>
-          <div className="btn-agregar">
-            <label>Busca tu cliente:</label>
-            <Input type="select"name="select" id="agregar" onChange={(e) => setIdCliente(e.target.value)}
+      
+
+        
+          <ModalHeader toggle={toggle}>Nueva cotización</ModalHeader>
+
+          <div className="clientearticulo">
+
+          <div className="buscarcliente">
+            
+         
+            <label className="scl"> Busca tu cliente  </label>
+            
+            <Input className="buscarcliente" type="select"name="select" id="agregar"  onChange={(e) => setIdCliente(e.target.value)} 
             >
               {cliente.map((item) => (
                 <option key={item.idcliente} value={item.idcliente}>
                   {item.nombre}
+                 
                 </option>
               ))}
-            </Input>            
+           </Input>            
           </div>
-          
-          
-            <Button className="agregarArM" onClick={() => agreArt()}>+ Agregar Articulo</Button>
 
-            <div className="col-md-4">                  
+        
+         
+          <div className="agregararticulo">
+          
+           <Button className=" agregarArM" id="agregarArM" onClick={() => agreArt()}>+ Agregar Articulo</Button>
+          
+           </div>
+           </div>
+
+         
+
+            <div className="descuentocostoenvio"> 
+              
                 <div id="oplogin"className="descuento">
+
                   <label>
-                    <strong> Descuento </strong>
+              Descuento 
                   </label>
                   <select
                     className="descuento"
@@ -434,34 +455,40 @@ const setCosto_envio =(valor)=>{
                     id="descuento"
                     onChange={handleInputChange}>           
                     <option selected disabled value="">
-                      -- Seleccione --
+                       Seleccione 
                     </option>
                     <option value="1">20 %</option>
                     <option value="2">30 %</option> 
                     <option value="3">50 %</option>                   
                   </select>
-                  </div>           
-              </div>  
+                          
+              </div> 
+            
 
-              <div className="col-md-4">                  
-                <div id="oplogin"className="costo_envio">
+              <div className="costoenvio">                  
+                <div id="oplogin"className="costoenvio">
                   <label>
-                    <strong> costo_envio" </strong>
+                     Costo de envio 
                   </label>
+
                   <select
-                    className="costo_envio"
+                    className="costoenvio"
                     name="costo_envio"
-                    id="costo_envio"
+                    id="costoenvio"
                     onChange={handleInputChange}>           
                     <option selected disabled value="">
-                      -- Seleccione --
+                       Seleccione 
                     </option>
-                    <option value="1">$5000</option>
-                    <option value="2">$6500 </option> 
-                    <option value="3">$7000 </option>                   
+                    <option value="1">$ 5000 </option>
+                    <option value="2">$ 6500 </option> 
+                    <option value="3">$ 7000 </option>                   
                   </select>
-                  </div>           
+                  </div>
+                             
               </div>  
+              </div> 
+         
+             
 
 
 
@@ -472,7 +499,7 @@ const setCosto_envio =(valor)=>{
                 <table
                   className="table"
                   id="table"
-                  style={{ marginTop: 60, background: "white" }}
+                  style={{ marginTop:24, background: "white" }}
                 >
                   <thead>
                     <tr>

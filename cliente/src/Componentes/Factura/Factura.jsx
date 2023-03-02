@@ -27,7 +27,7 @@ const Factura = () => {
         const res = await axios.get(`${API}/${id}`);
         setData(res ? res.data : DATA)
     }
-    console.log(data,44444444)
+   
 
     const sendEmail = async () => {
         const button = document.getElementById('button_send')
@@ -63,17 +63,7 @@ const Factura = () => {
                 </Button>
             </div>
           
-           {/*  <div className='d-flex justify-content-start m-3'>
-                 <Button
-                 className="btn btn-outline-secondary"
-                    id='button_send'                  
-                    outline
-                    onClick={() => atras()}
-                >Cotizaciones
-                    
-                </Button> 
-            </div> */}
-            </div >
+           
             <div className="infolocal">
             <p>Factura de venta</p>
             <h4>CRM PRODUCTS SA</h4>
@@ -163,6 +153,7 @@ const Factura = () => {
                     </p>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     )

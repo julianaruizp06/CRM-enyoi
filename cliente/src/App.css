@@ -302,10 +302,95 @@ box-shadow:  0px 2px 0px 8px rgba(0,0,0,0.08);
 
 }
 
-.logo{
-background-image: url(./logo/logo.png.png);
-width: 20px;
-height: 20px;
-z-index: initial;
 
+.bscliente{
+    margin: 12px;    
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+.buscarcliente{
+    margin: 12px;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.agregararticulo{
+    display: flex; 
+   justify-content: flex-end;
+   padding-top: 20px;  
+  
+
+}
+
+.agregarArM{
+   padding: 12px;
+    display: flex; 
+    justify-content: flex-end;  
+    align-items: center;
+    height: 37px;    
+    margin-top: 12px;
+    background-color:#198754;
+}
+
+.clientearticulo,
+.costdes{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.buscarcliente{
+    width: 380px;
+    align-items: start;
+   
+}
+.scl{
+    margin-left: 14px;
+}
+
+
+.descuentocostoenvio{
+
+    display: flex;
+   
+    align-items: center;   
+    gap:117px;
+    
+   
+  
+}
+
+#costoenvio,
+#descuento{
+    border-radius: 8px;
+   width:130px
+  ;
+}
+
+
+
+.costoenvio,
+.descuento{
+    margin-left: 14px;
+}
+
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 128%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
 }
