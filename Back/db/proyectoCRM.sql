@@ -65,7 +65,9 @@ CREATE TABLE cotizaciones (
        id_cotizacion serial PRIMARY KEY,
        idcliente integer NOT NULL,
        idusuario integer NOT NULL,
-       valor integer not null,
+       descuento decimal(2,2) NOT NULL,
+       costo_envio decimal(11,2) NOT NULL,
+       valorT integer not null,
        FOREIGN KEY (idcliente) REFERENCES cliente (idcliente) ON DELETE CASCADE,
        FOREIGN KEY (idusuario) REFERENCES usuario (idusuario) ON DELETE CASCADE
 );
@@ -76,8 +78,7 @@ CREATE TABLE detalles_cotizacion (
        idarticulo integer NOT NULL,
        cantidad integer NOT NULL,
        subtotal decimal(11,2) NOT NULL,
-       descuento decimal(2,2) NOT NULL,
-       costo_envio decimal(11,2) NOT NULL,
+      
        total decimal(11,2) NOT NULL,
        FOREIGN KEY (idarticulo) REFERENCES articulo (idarticulo) ON DELETE CASCADE,
        FOREIGN KEY (id_cotizacion) REFERENCES cotizaciones (id_cotizacion) ON DELETE CASCADE	

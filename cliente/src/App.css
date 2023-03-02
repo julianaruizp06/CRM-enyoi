@@ -2,12 +2,6 @@ body{font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucid
 
 
 }
-body {
-     
-    background-color: white;
-  
-    
-  }
 
 #login{
     justify-content:right;
@@ -36,6 +30,14 @@ a{
    
  
    
+ }
+
+
+ .loginf{
+    background-color:#4C6FF7;
+    height: 100px;
+
+
  }
 
 .headerdashboard{

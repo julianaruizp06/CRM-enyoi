@@ -11,7 +11,6 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete , AiOutlineUserAdd} from "react-icons/ai";
 
-import { setLocalStorage, types } from "../utils/localStorage";
 
 
 

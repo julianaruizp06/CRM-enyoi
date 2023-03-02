@@ -13,7 +13,7 @@ import { AiFillDelete , AiOutlineUserAdd,AiOutlineHome} from "react-icons/ai";
 
 import notify from "../utils/notify";
 import { useNavigate } from "react-router-dom";
-import { setLocalStorage, types } from "../utils/localStorage";
+
 
 
 const USER = {
@@ -45,6 +45,13 @@ const Cliente = (props) => {
       
     }
   };
+
+
+  useEffect(() => {
+    listarCliente();
+   
+  }, []);
+
 
 
   

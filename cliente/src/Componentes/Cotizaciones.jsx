@@ -16,7 +16,7 @@ import notify from "../utils/notify";
 
 import { useNavigate } from "react-router-dom";
 import Edit from "./Modals/Cotizaciones/Edit";
-import { setLocalStorage, types } from "../utils/localStorage";
+
 
 const USER = {
   iddetalle: "",
@@ -44,7 +44,6 @@ const Cotizacion = (props) => {
   const [cliente, setCliente] = useState([]); //generar la lista usuarios
   const [listAr, setListar] = useState([]);
   const [idCliente, setIdCliente] = useState(null);
-  const [descuento, setDescuento] = useState(0);
   const [selectFactura, setSelectFactura] = useState(null);
   const navigate = useNavigate();
 
@@ -151,22 +150,68 @@ const Cotizacion = (props) => {
     } else {
       const precios = listAr.map((x) => x.precioT); //calcular la su total de los articulos
       const valor = precios.reduce((cont, next) => cont + next);
-      /* const valorT =valor*descuento; */
+      const descuento =  setDescuento(selected.descuento);
+      const valorDes = valor-(valor*(descuento/100));//valor del total con descuento
+      const costo_envio=setCosto_envio(selected.costo_envio);
+      const total_pagar=valorDes+costo_envio//valorfinal a pagar
+
       const payload = {
         idusuario: props.user.id,
         idcliente: Number(idCliente),
         valor: valor,
         articulos: listAr,
-        decuento: descuento
-        /* valorT: valorT */
+        descuento:descuento,
+        valorDes,
+        costo_envio,
+        total_pagar
+        
+        
       };
-      let res = await axios.post(url, payload);
+
+      console.log(payload)
+      console.log(selected.descuento)
+
+
+
+
+
+
+       let res = await axios.post(url, payload);
       notify()
       listarCotizaciones();
       setModal(!modal);
-      setListar([]);
+      setListar([]); 
     }
   };
+
+const setDescuento =(valor)=>{
+
+  const valorDescuento={
+
+    "1":20,
+    "2":30,
+    "3":50
+  }
+   return valorDescuento[valor]
+  
+}
+
+
+const setCosto_envio =(valor)=>{
+
+  const Costo_envio={
+
+    "1":5000,
+    "2":6000,
+    "3":7000
+  }
+   return Costo_envio[valor]
+
+  
+}
+
+
+
 
   //eliminar cotizacion
 
@@ -338,6 +383,8 @@ const Cotizacion = (props) => {
                 </Button>
               </td>
               <td>
+
+                
                 <Button
                   className="btn btn-warning"
                   id="editar"
@@ -376,7 +423,7 @@ const Cotizacion = (props) => {
           
             <Button className="agregarArM" onClick={() => agreArt()}>+ Agregar Articulo</Button>
 
-           <div className="col-md-4">                  
+            <div className="col-md-4">                  
                 <div id="oplogin"className="descuento">
                   <label>
                     <strong> Descuento </strong>
@@ -389,12 +436,35 @@ const Cotizacion = (props) => {
                     <option selected disabled value="">
                       -- Seleccione --
                     </option>
-                    <option value="0,2">20 %</option>
-                    <option value="0,3">30 %</option> 
-                    <option value="0,5">50 %</option>                   
+                    <option value="1">20 %</option>
+                    <option value="2">30 %</option> 
+                    <option value="3">50 %</option>                   
                   </select>
                   </div>           
-              </div> 
+              </div>  
+
+              <div className="col-md-4">                  
+                <div id="oplogin"className="costo_envio">
+                  <label>
+                    <strong> costo_envio" </strong>
+                  </label>
+                  <select
+                    className="costo_envio"
+                    name="costo_envio"
+                    id="costo_envio"
+                    onChange={handleInputChange}>           
+                    <option selected disabled value="">
+                      -- Seleccione --
+                    </option>
+                    <option value="1">$5000</option>
+                    <option value="2">$6500 </option> 
+                    <option value="3">$7000 </option>                   
+                  </select>
+                  </div>           
+              </div>  
+
+
+
           
           <ModalBody>
             <div className="form-group">
@@ -467,6 +537,10 @@ const Cotizacion = (props) => {
             </div>
           </ModalBody>
           <ModalFooter>
+
+          {/* <th> {valorT} </th>
+           <th className="text-center">{valorT} </th> */}
+                        
             <Button color="primary" type="submit" onClick={handleSubmit}>
               Crear
             </Button>

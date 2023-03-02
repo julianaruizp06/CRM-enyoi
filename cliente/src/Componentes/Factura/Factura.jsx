@@ -6,10 +6,10 @@ import './factura.css';
 import { Button } from 'reactstrap';
 import { cop } from '../../utils/i18';
 import notify from '../../utils/notify';
-/* import { useNavigate } from "react-router-dom"; */
+ import { useNavigate } from "react-router-dom"; 
 
 const DATA = {
-    id_cotizacion: 0, valor: 0, vendedor: "", cliente: "", client_email: '', products: []
+    id_cotizacion: 0, valor: 0, vendedor: "", cliente: "", cliente_email: '', costo_envio: 0, total_pagar: 0, descuento: 0, products: []
 }
 
 const API = 'http://localhost:3001/cotizacion';
@@ -19,7 +19,7 @@ const Factura = () => {
     const [data, setData] = useState(DATA);
     const { id } = useParams();
 
-    useEffect(() => {
+     useEffect(() => {
         mount()
     }, []);
 
@@ -27,6 +27,7 @@ const Factura = () => {
         const res = await axios.get(`${API}/${id}`);
         setData(res ? res.data : DATA)
     }
+    console.log(data,44444444)
 
     const sendEmail = async () => {
         const button = document.getElementById('button_send')
@@ -36,16 +37,17 @@ const Factura = () => {
         const res = await axios.post(API_NOTIFICACION, { html: facturaDigital.outerHTML });
         if (res) {
             notify();
+            atras();
         }
         button.style.display = 'block'
     }
-  /*   const navigate=useNavigate();
+   const navigate=useNavigate();
 
     function atras() {
       navigate("/cotizaciones")  
    
     }
- */
+ 
     return (
         <div id='factura_component'>
             <div className='factura'>
@@ -61,20 +63,20 @@ const Factura = () => {
                 </Button>
             </div>
           
-            <div className='d-flex justify-content-start m-3'>
-             {/*    <Button
+           {/*  <div className='d-flex justify-content-start m-3'>
+                 <Button
                  className="btn btn-outline-secondary"
                     id='button_send'                  
                     outline
                     onClick={() => atras()}
                 >Cotizaciones
                     
-                </Button> */}
-            </div>
+                </Button> 
+            </div> */}
             </div >
             <div className="infolocal">
             <p>Factura de venta</p>
-            <h4>CRM PRODCUTS SA</h4>
+            <h4>CRM PRODUCTS SA</h4>
                         <p>Av. Winston Churchill, Plaza Orleans 3er. nivel</p>
                         <p>local 312</p>
                         
@@ -85,6 +87,7 @@ const Factura = () => {
                     <h5>Facturar a</h5>
                     <p>{data.vendedor}</p>
                 </div>
+                
                 <div className="col-3">
                     <h5>Enviar a</h5>
                     <p>{data.cliente}</p>
@@ -123,11 +126,29 @@ const Factura = () => {
                         }
                     </tbody>
                     <tfoot>
+                    <tr>
+                            <th></th>
+                            <th></th>
+                            <th>SubTotal</th>
+                            <th>{cop(data.valor)}</th>
+                        </tr>
+                    <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Descuento</th>
+                            <th>{`${data.descuento} %`}</th>
+                        </tr>
+                    <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Costo de envío</th>
+                            <th>{cop(data.costo_envio)}</th>
+                        </tr>
                         <tr>
                             <th></th>
                             <th></th>
-                            <th>Total</th>
-                            <th>{cop(data.valor)}</th>
+                            <th>Total a cancelar</th>
+                            <th>{cop(data.total_pagar)}</th>
                         </tr>
                     </tfoot>
                 </table>

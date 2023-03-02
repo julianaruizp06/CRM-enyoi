@@ -37,7 +37,7 @@ const navigate=useNavigate();
   
     return (
       
-      <div>
+      <div className="vista1">
         <div >
           <Header/>
         </div>
