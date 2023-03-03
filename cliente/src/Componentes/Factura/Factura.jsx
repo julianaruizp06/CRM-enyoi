@@ -36,9 +36,11 @@ const Factura = () => {
         const facturaDigital = document.getElementsByTagName('html')[0];
         const res = await axios.post(API_NOTIFICACION, { html: facturaDigital.outerHTML });
         if (res) {
+
             notify();
             atras();
         }
+        
         button.style.display = 'block'
     }
    const navigate=useNavigate();

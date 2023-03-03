@@ -1,46 +1,27 @@
- .containerfactura{
-    margin: 70px;
 
-
- }
+#factura_component{
+ width: 600px;
+ margin: 15px;
+ border-radius: 8px; 
+ box-shadow: 0px 2px 0px 8px rgba(0,0,0,0.08);
  
- #factura_component{  
-  
-  position: center;
-   margin-top: 50px;
-   margin-left: 150px; 
-   border-radius: 8px;
-   width: 600px;    
-    background: whitesmoke;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.49); 
-    
+ 
+ 
 
- }
 
- .factura{
-  padding: 20px;
+}
+.factura{
+  padding: 8px;
   justify-content: center;
  }
+
 .infolocal{
   display: flex;
   flex-direction: column;
  align-items: center;
+ padding: 12px;
  
 }
- 
-
-
- .enviar{
-    
-   display: flex;
-   justify-content: space-between;
-   gap: 300px;
-   
-   
- }
-  
-
-
 
 
 #footer_fa{
@@ -53,6 +34,3 @@
   font-size: 8px;
    
 }
-
-
-
