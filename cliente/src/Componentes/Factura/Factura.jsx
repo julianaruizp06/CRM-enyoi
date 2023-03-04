@@ -15,9 +15,12 @@ const DATA = {
 const API = 'http://localhost:3001/cotizacion';
 const API_NOTIFICACION = 'http://localhost:3001/notificaciones/cotizacion';
 
+
+
 const Factura = () => {
     const [data, setData] = useState(DATA);
     const { id } = useParams();
+    const[dataEmail, setDataEmail]= useState({});
 
      useEffect(() => {
         mount()
@@ -25,7 +28,13 @@ const Factura = () => {
 
     const mount = async () => {
         const res = await axios.get(`${API}/${id}`);
-        setData(res ? res.data : DATA)
+        const {products, ...cotizacion}=res.data
+        const cotizacionData=cotizacion
+        const productsData=products   
+        const emailData={cotizacionData,productsData}
+        setDataEmail(emailData)
+             
+        setData(res.data )
     }
    
 
@@ -33,14 +42,15 @@ const Factura = () => {
         const button = document.getElementById('button_send')
         document.getElementsByTagName('noscript')[0].style.display='none'
         button.style.display = 'none'
-        const facturaDigital = document.getElementsByTagName('html')[0];
-        const res = await axios.post(API_NOTIFICACION, { html: facturaDigital.outerHTML });
+
+        const res = await axios.post(API_NOTIFICACION, dataEmail);
+
+   
         if (res) {
 
             notify();
             atras();
         }
-        
         button.style.display = 'block'
     }
    const navigate=useNavigate();
@@ -54,7 +64,7 @@ const Factura = () => {
         <div id='factura_component'>
             <div className='factura'>
           <div className='enviar'>
-          <div className='d-flex justify-content-start m-3'>
+          <div className=''>
                 <Button
                     className="btn btn-outline-secondary"
                     id='button_send'                  
@@ -162,3 +172,6 @@ const Factura = () => {
 }
 
 export default Factura
+
+
+
