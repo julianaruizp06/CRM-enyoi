@@ -10,13 +10,16 @@ import {
   Input,
 } from "reactstrap";
 import { FaEdit } from "react-icons/fa";
-import { AiFillDelete, AiOutlineUserAdd ,AiOutlineSearch} from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiOutlineUserAdd,
+  AiOutlineSearch,
+} from "react-icons/ai";
 
 import notify from "../utils/notify";
 
 import { useNavigate } from "react-router-dom";
 import Edit from "./Modals/Cotizaciones/Edit";
-
 
 const USER = {
   iddetalle: "",
@@ -52,11 +55,10 @@ const Cotizacion = (props) => {
   const [modaledit, setModaledit] = useState(false); //editar usuario
   const [editModalFactura, setEditModalFactura] = useState(false);
 
-
   //funcion para ver la lista de cotizaciones en la primera vista
   const listarCotizaciones = async () => {
     const res = await axios.get(url);
-    console.log(res);
+
     if (res) {
       setdetalles_cotizacion(res.data || []);
     }
@@ -65,7 +67,6 @@ const Cotizacion = (props) => {
   useEffect(() => {
     listarCotizaciones();
   }, []);
-
 
   ///funciones para agregar cotizacion
 
@@ -80,7 +81,6 @@ const Cotizacion = (props) => {
     listarCliente();
   }, []);
 
-
   //funcion para Buscar Cotizacion
   const searchUser = ({ target }) => {
     const resultSearch = detalles_cotizacion.filter((detalles_cotizacion) =>
@@ -94,13 +94,11 @@ const Cotizacion = (props) => {
     );
   };
 
-
   useEffect(() => {
     if (detalles_cotizacionfil) {
       setdetalles_cotizacionfil(detalles_cotizacion);
     }
   }, [detalles_cotizacion]);
-
 
   //funcion para ver la lista de articulos de la tabla modal
   const listarArticulo = async () => {
@@ -118,14 +116,12 @@ const Cotizacion = (props) => {
     setModal(!modal);
     listarArticulo();
     listarCliente();
-  }
+  };
 
   //ver una factura
   const hanldeView = (id) => {
-    navigate(`/factura/${id}`);  
-      
-  }
-  
+    navigate(`/factura/${id}`);
+  };
 
   //funciones para agregar los articulos en la ventana modal
   //agrgar una fila
@@ -146,93 +142,59 @@ const Cotizacion = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!e.target.checkValidity()) {
-      console.log("no enviar");
     } else {
       const precios = listAr.map((x) => x.precioT); //calcular la su total de los articulos
       const valor = precios.reduce((cont, next) => cont + next);
-      const descuento =  setDescuento(selected.descuento);
-      const valorDes = valor-(valor*(descuento/100));//valor del total con descuento
-      const costo_envio=setCosto_envio(selected.costo_envio);
-      const total_pagar=valorDes+costo_envio//valorfinal a pagar
+      const descuento = setDescuento(selected.descuento);
+      const valorDes = valor - valor * (descuento / 100); //valor del total con descuento
+      const costo_envio = setCosto_envio(selected.costo_envio);
+      const total_pagar = valorDes + costo_envio; //valorfinal a pagar
 
       const payload = {
         idusuario: props.user.id,
         idcliente: Number(idCliente),
         valor: valor,
         articulos: listAr,
-        descuento:descuento,
+        descuento: descuento,
         valorDes,
         costo_envio,
-        total_pagar
-        
-        
+        total_pagar,
       };
 
-      console.log(payload)
-      console.log(selected.descuento)
-
-
-
-
-
-
-       let res = await axios.post(url, payload);
-      notify()
-      listarCotizaciones();
-      setModal(!modal);
-      setListar([]); 
+      let res = await axios.post(url, payload);
+      if (res) {
+        notify();
+        listarCotizaciones();
+        setModal(!modal);
+        setListar([]);
+      }
     }
   };
 
-const setDescuento =(valor)=>{
+  const setDescuento = (valor) => {
+    const valorDescuento = {
+      1: 20,
+      2: 30,
+      3: 50,
+    };
+    return valorDescuento[valor];
+  };
 
-  const valorDescuento={
-
-    "1":20,
-    "2":30,
-    "3":50
-  }
-   return valorDescuento[valor]
-  
-}
-
-
-const setCosto_envio =(valor)=>{
-
-  const Costo_envio={
-
-    "1":5000,
-    "2":6000,
-    "3":7000
-  }
-   return Costo_envio[valor]
-
-  
-}
-
-
-
+  const setCosto_envio = (valor) => {
+    const Costo_envio = {
+      1: 5000,
+      2: 6000,
+      3: 7000,
+    };
+    return Costo_envio[valor];
+  };
 
   //eliminar cotizacion
 
   const dropCotizacion = async (id) => {
-    const res = await axios.delete(`${url}/${id}`)
+    const res = await axios.delete(`${url}/${id}`);
     if (res) {
       notify();
-      listarCotizaciones();
-    }
-  }
-
-
-  //ACTUALIZAR cOTIZACION
-
-  const actualizarVentas = async () => {
-    const res = await axios.put(url, selected);
-    console.log(res);
-    if (res) {
-      notify();
-      setSelected({});
-      setModaledit(!modaledit);
       listarCotizaciones();
     }
   };
@@ -242,13 +204,10 @@ const setCosto_envio =(valor)=>{
     setListar(listAr.filter((item) => item.id !== id));
   };
 
-
   const toggleedit = (user) => {
     setSelected(user);
     setModaledit(!modaledit);
   };
-
-
 
   //funcion  para identificar el precio del articulo
 
@@ -275,86 +234,64 @@ const setCosto_envio =(valor)=>{
     const lista = listAr.map((item) =>
       item.id === id
         ? {
-          ...item,
-          cant: Number(cant),
-          precioT: Number(cant) * item.precioU,
-        }
+            ...item,
+            cant: Number(cant),
+            precioT: Number(cant) * item.precioU,
+          }
         : item
     );
     setListar(lista);
   };
 
-
   //funcion atras
-  
 
- 
- 
-
-       function atras() {   
-        
-    
-    
-        
-        if (props.user.rol === 1) {
-          navigate("/homea");
-        } else {
-          navigate("/homeu");
-        }
-      }
-    
-    
-      
-
-
-
-
-         
-    
-      
-
-   
-
-      
-    
-    
-
-
-  
+  function atras() {
+    if (props.user.rol === 1) {
+      navigate("/homea");
+    } else {
+      navigate("/homeu");
+    }
+  }
 
   return (
     <div className="container-sm">
-      <header className="header_u" style={{ color: "white", marginTop: 40, marginBottom:40}}>
-      <h2>Bienvenido:{props.user.name} </h2>
-      <p>
-      <h5>
-          En este módulo puedes agregar, editar y eliminar los diferentes cotizaciones del sistema.{" "}
-      </h5>  </p>      
-    
-      
-
-      <div className="agregarA">
-      <Button id="home" className="btn btn-light "  onClick={() => atras()}>Inicio</Button>
-      </div>
-
-   
-        <div id="agregU">
-
-        <input
-          type="search" id="searchco" onChange={searchUser} placeholder=" ¿ Qué cotización buscas ?"/>
-       <Button id="btn_agregar" className="btn btn-success"onClick={() => toggle()}> <AiOutlineUserAdd /> Agregar Cotización</Button>
-        </div>
-        </header>
-
-
-      
-     
-
-      <table
-        className="table"
-        id="table"
-        style={{ background: "white" }}
+      <header
+        className="header_u"
+        style={{ color: "white", marginTop: 40, marginBottom: 40 }}
       >
+        <h2>Bienvenido:{props.user.name} </h2>
+        <p>
+          <h5>
+            En este módulo puedes agregar, editar y eliminar los diferentes
+            cotizaciones del sistema.{" "}
+          </h5>{" "}
+        </p>
+
+        <div className="agregarA">
+          <Button id="home" className="btn btn-light " onClick={() => atras()}>
+            Inicio
+          </Button>
+        </div>
+
+        <div id="agregU">
+          <input
+            type="search"
+            id="searchco"
+            onChange={searchUser}
+            placeholder=" ¿ Qué cotización buscas ?"
+          />
+          <Button
+            id="btn_agregar"
+            className="btn btn-success"
+            onClick={() => toggle()}
+          >
+            {" "}
+            <AiOutlineUserAdd /> Agregar Cotización
+          </Button>
+        </div>
+      </header>
+
+      <table className="table" id="table" style={{ background: "white" }}>
         <thead>
           <tr>
             <th className="text-center">#</th>
@@ -379,25 +316,27 @@ const setCosto_envio =(valor)=>{
                   id="view"
                   onClick={() => hanldeView(item.id_cotizacion)}
                 >
-                 <AiOutlineSearch/>
+                  <AiOutlineSearch />
                 </Button>
               </td>
               <td>
-
-                
                 <Button
                   className="btn btn-warning"
                   id="editar"
                   onClick={() => {
-                    setSelectFactura(item.id_cotizacion)
-                    setEditModalFactura(true)
+                    setSelectFactura(item.id_cotizacion);
+
+                    setEditModalFactura(true);
                   }}
                 >
                   <FaEdit />
                 </Button>
               </td>
               <td>
-                <Button className="btn btn-danger" onClick={() => dropCotizacion(item.id_cotizacion)}>
+                <Button
+                  className="btn btn-danger"
+                  onClick={() => dropCotizacion(item.id_cotizacion)}
+                >
                   <AiFillDelete />
                 </Button>
               </td>
@@ -406,100 +345,85 @@ const setCosto_envio =(valor)=>{
         </tbody>
       </table>
       <div className="modalcotiza">
-        
         <Modal isOpen={modal} toggle={toggle}>
-      
-
-        
           <ModalHeader toggle={toggle}>Nueva cotización</ModalHeader>
 
           <div className="clientearticulo">
+            <div className="buscarcliente">
+              <label className="scl"> Busca tu cliente </label>
 
-          <div className="buscarcliente">
-            
-         
-            <label className="scl"> Busca tu cliente  </label>
-            
-            <Input className="buscarcliente" type="select"name="select" id="agregar"  onChange={(e) => setIdCliente(e.target.value)} 
-            >
-              {cliente.map((item) => (
-                <option key={item.idcliente} value={item.idcliente}>
-                  {item.nombre}
-                 
-                </option>
-              ))}
-           </Input>            
+              <Input
+                className="buscarcliente"
+                type="select"
+                name="select"
+                id="agregar"
+                onChange={(e) => setIdCliente(e.target.value)}
+              >
+                {cliente.map((item) => (
+                  <option key={item.idcliente} value={item.idcliente}>
+                    {item.nombre}
+                  </option>
+                ))}
+              </Input>
+            </div>
+
+            <div className="agregararticulo">
+              <Button
+                className=" agregarArM"
+                id="agregarArM"
+                onClick={() => agreArt()}
+              >
+                + Agregar Articulo
+              </Button>
+            </div>
           </div>
 
-        
-         
-          <div className="agregararticulo">
-          
-           <Button className=" agregarArM" id="agregarArM" onClick={() => agreArt()}>+ Agregar Articulo</Button>
-          
-           </div>
-           </div>
+          <div className="descuentocostoenvio">
+            <div id="oplogin" className="descuento">
+              <label>Descuento</label>
+              <select
+                className="descuento"
+                name="descuento"
+                id="descuento"
+                onChange={handleInputChange}
+              >
+                <option selected disabled value="">
+                  Seleccione
+                </option>
+                <option value="1">20 %</option>
+                <option value="2">30 %</option>
+                <option value="3">50 %</option>
+              </select>
+            </div>
 
-         
+            <div className="costoenvio">
+              <div id="oplogin" className="costoenvio">
+                <label>Costo de envio</label>
 
-            <div className="descuentocostoenvio"> 
-              
-                <div id="oplogin"className="descuento">
+                <select
+                  className="costoenvio"
+                  name="costo_envio"
+                  id="costoenvio"
+                  onChange={handleInputChange}
+                >
+                  <option selected disabled value="">
+                    Seleccione
+                  </option>
+                  <option value="1">$ 5000 </option>
+                  <option value="2">$ 6500 </option>
+                  <option value="3">$ 7000 </option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-                  <label>
-              Descuento 
-                  </label>
-                  <select
-                    className="descuento"
-                    name="descuento"
-                    id="descuento"
-                    onChange={handleInputChange}>           
-                    <option selected disabled value="">
-                       Seleccione 
-                    </option>
-                    <option value="1">20 %</option>
-                    <option value="2">30 %</option> 
-                    <option value="3">50 %</option>                   
-                  </select>
-                          
-              </div> 
-            
-
-              <div className="costoenvio">                  
-                <div id="oplogin"className="costoenvio">
-                  <label>
-                     Costo de envio 
-                  </label>
-
-                  <select
-                    className="costoenvio"
-                    name="costo_envio"
-                    id="costoenvio"
-                    onChange={handleInputChange}>           
-                    <option selected disabled value="">
-                       Seleccione 
-                    </option>
-                    <option value="1">$ 5000 </option>
-                    <option value="2">$ 6500 </option> 
-                    <option value="3">$ 7000 </option>                   
-                  </select>
-                  </div>
-                             
-              </div>  
-              </div> 
-         
-             
-
-
-
-          
           <ModalBody>
             <div className="form-group">
               <Form>
                 <table
                   className="table"
                   id="table"
-                  style={{ marginTop:24, background: "white" }}
+                  style={{ marginTop: 24, background: "white" }}
                 >
                   <thead>
                     <tr>
@@ -564,10 +488,9 @@ const setCosto_envio =(valor)=>{
             </div>
           </ModalBody>
           <ModalFooter>
-
-          {/* <th> {valorT} </th>
+            {/* <th> {valorT} </th>
            <th className="text-center">{valorT} </th> */}
-                        
+
             <Button color="primary" type="submit" onClick={handleSubmit}>
               Crear
             </Button>
@@ -577,15 +500,14 @@ const setCosto_envio =(valor)=>{
           </ModalFooter>
         </Modal>
       </div>
-      {
-        editModalFactura &&
+      {editModalFactura && (
         <Edit
           idUser={props.user.id}
           id={selectFactura}
           isOpen={editModalFactura}
           toggle={() => setEditModalFactura(!editModalFactura)}
         />
-      }
+      )}
     </div>
   );
 };

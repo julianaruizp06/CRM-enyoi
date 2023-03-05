@@ -2,16 +2,15 @@
 const { Router } = require("express");
 //const pool = require('../db')
 const {
-  listarCotizaciones,  
+  listarCotizaciones,
   crearCotizacion,
   eliminarCotizacion,
   getCotizaciones,
   getSingleCotizacionDetail,
-  updateCotizacionDetail
+  updateCotizacionDetail,
 } = require("../controllers/cotizacion.controller");
 
 const router = Router();
-
 
 router.get("/", getCotizaciones);
 router.get("/:id", getSingleCotizacionDetail);

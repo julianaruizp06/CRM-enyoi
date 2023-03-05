@@ -7,18 +7,18 @@ const {
   crearCliente,
   eliminarCliente,
   actualizarCliente,
-} = require('../controllers/cliente.controllers');
+} = require("../controllers/cliente.controllers");
 
 const router = Router();
 
-router.get("/",listarClientes);
+router.get("/", listarClientes);
 
-router.get("/:id",listarCliente);
+router.get("/:id", listarCliente);
 
-router.post("/",crearCliente);
+router.post("/", crearCliente);
 
-router.delete("/:id",eliminarCliente);
+router.delete("/:id", eliminarCliente);
 
-router.put("/",actualizarCliente);
+router.put("/", actualizarCliente);
 
 module.exports = router;

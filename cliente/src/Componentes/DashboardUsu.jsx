@@ -1,126 +1,70 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import Grafica from "./Grafica";
 import Header from "./Header";
-import {AiOutlineUser} from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 
+const Dashboard = (props) => {
+  const navigate = useNavigate();
 
+  function cerrarSesion() {
+    navigate("/");
+  }
 
-const Dashboard = (props) => { 
-console.log("🚀 ~ file: Dashboard.jsx:5 ~ Dashboard ~ props", props)
-const navigate=useNavigate();
+  function vistaClientes() {
+    navigate("/clientes");
+  }
 
-    function cerrarSesion() {
-      navigate("/")  
-   
-    }
+  function vistaArticulos() {
+    navigate("/articulos");
+  }
+  function vistaCotizacion() {
+    navigate("/cotizaciones");
+  }
 
-  
-
-
-    function vistaClientes() {
-      navigate("/clientes")  
-   
-    }
-
-    function vistaArticulos() {
-      navigate("/articulos")  
-   
-    }
-    function vistaCotizacion() {
-      navigate("/cotizaciones")  
-   
-    }
-  
-    return (
-      
+  return (
+    <div>
       <div>
-        <div >
-          <Header/>
-        </div>
-    
+        <Header />
+      </div>
 
       <div className="dash">
-
         <div className="barralateral">
-
-
-       
-
-<div className="header">  
-
+          <div className="header">
             <div className="icono">
-           <div className="iconos">
-          <AiOutlineUser/> 
+              <div className="iconos">
+                <AiOutlineUser />
+              </div>
+              <div className="iconos">
+                Usuario:{props.user.name}
+                <br />
+              </div>
+            </div>
           </div>
-          <div className="iconos">
-          Usuario:{props.user.name}<br/>   
+
+          <div className="nav">
+            <nav className="nav">
+              <a href=" " onClick={vistaClientes}>
+                Clientes
+              </a>
+              <a href=" " onClick={vistaArticulos}>
+                Articulos
+              </a>
+              <a href=" " onClick={vistaCotizacion}>
+                Cotizaciones
+              </a>
+              <a href=" " onClick={cerrarSesion}>
+                Cerrar sesion
+              </a>
+            </nav>
           </div>
-         
+        </div>
 
-          </div> 
-              
-                 
+        <div className="grafica">
+          <Grafica></Grafica>
+        </div>
       </div>
-
-
-<div className="nav">
-
-
-<nav className="nav">
-      
-           <a
-            
-             href=" "
-             onClick={vistaClientes}
-           >
-             Clientes
-           </a>
-           <a
-         
-             href=" "
-             onClick={vistaArticulos}
-           >
-             Articulos
-           </a>
-           <a
-             
-             href=" "
-             onClick={vistaCotizacion}
-           >
-            
-             Cotizaciones
-           </a>
-           <a
-          
-             href=" "
-             onClick={cerrarSesion}
-           >
-           
-            Cerrar sesion
-           </a>             
-   
-   </nav>
-   </div>
- 
-
-
-   </div>
-        
-         
-      
-      
-     <div className="grafica">
-      <Grafica></Grafica>
-     </div>
-   
-  
-     </div>
-    
-      
-      </div>
-  
-      
-    );
-}
+    </div>
+  );
+};
 export default Dashboard;

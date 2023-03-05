@@ -1,6 +1,5 @@
-
-const { Router } = require('express');
-const { sendCotizacion } = require('../controllers/notificaciones.controller');
+const { Router } = require("express");
+const { sendCotizacion } = require("../controllers/notificaciones.controller");
 
 const router = Router();
 

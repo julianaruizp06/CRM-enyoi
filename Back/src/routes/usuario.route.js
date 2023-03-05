@@ -7,18 +7,18 @@ const {
   crearUsuario,
   eliminarUsuario,
   actualizarUsuario,
-} = require('../controllers/usuario.controllers');
+} = require("../controllers/usuario.controllers");
 
 const router = Router();
 
-router.get("/",listarUsuarios);
+router.get("/", listarUsuarios);
 
-router.get("/:id",listarUsuario);
+router.get("/:id", listarUsuario);
 
-router.post("/",crearUsuario);
+router.post("/", crearUsuario);
 
-router.delete("/:id",eliminarUsuario);
+router.delete("/:id", eliminarUsuario);
 
-router.put("/",actualizarUsuario);
+router.put("/", actualizarUsuario);
 
 module.exports = router;

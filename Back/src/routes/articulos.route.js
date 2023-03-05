@@ -7,7 +7,7 @@ const {
   crearArticulo,
   eliminarArticulo,
   actualizarArticulo,
-} = require('../controllers/articulo.controller');
+} = require("../controllers/articulo.controller");
 
 const router = Router();
 

@@ -7,7 +7,7 @@ const {
   crearRol,
   eliminarRol,
   actualizarRol,
-} = require('../controllers/rol.controller')
+} = require("../controllers/rol.controller");
 
 const router = Router();
 
