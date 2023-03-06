@@ -37,7 +37,7 @@ const DIAGRAM = {
   datasets: [
     {
       label: "ventas totales",
-      backgroundColor: "violet",
+      backgroundColor: "#FBAF00",
     },
   ],
 };
@@ -51,7 +51,7 @@ const InformeVentas = ({ items, labels }) => {
       datasets: [
         {
           label: "ventas totales",
-          backroundColor: "rgba(255, 99, 132, 0.5)",
+          backroundColor: "#4C6FF7",
           data: items,
         },
       ],

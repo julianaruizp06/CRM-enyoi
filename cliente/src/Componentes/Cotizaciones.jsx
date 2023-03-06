@@ -488,8 +488,7 @@ const Cotizacion = (props) => {
             </div>
           </ModalBody>
           <ModalFooter>
-            {/* <th> {valorT} </th>
-           <th className="text-center">{valorT} </th> */}
+         
 
             <Button color="primary" type="submit" onClick={handleSubmit}>
               Crear

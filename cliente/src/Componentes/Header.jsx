@@ -3,9 +3,14 @@ import React from "react";
 const Header = () => {
   return (
     <div className="headerdashboard">
+       <div  className="imagenheader">
+        <section className="img"> </section>
+       </div>
+       <div>
       <p>
-        <strong>Bienvenido</strong>
+        Bienvenido
       </p>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from './Componentes/Login';
+import Login1 from './Componentes/Login1';
 import Dashboard from './Componentes/Dashboard';
 import Clientes from './Componentes/Clientes';
 import Usuarios from './Componentes/Usuarios';
@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Login setUser={setUser} />} />
+          <Route exact path="/" element={<Login1 setUser={setUser} />} />
           <Route exact path="/homea" element={<Dashboard user={user} />} />
           <Route exact path="/homeu" element={<DashboardUsu user={user}/>} />
           <Route exact path="/usuarios" element={<Usuarios user={user} />} />
