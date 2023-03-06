@@ -34,7 +34,7 @@ create table articulo(
        nombre varchar(100) not null,
        precio_venta decimal(11,2) not null,
        descripcion varchar(256) not null  unique,
-       estado 	BOOL default true       
+       estado BOOL default true       
 );
 
 create table cliente(
@@ -48,18 +48,7 @@ create table cliente(
        estado BOOL default true
 );
 
-create table venta(
-       idventa SMALLSERIAL primary key ,
-       idcliente integer not null,
-       idusuario integer not null,
-	idarticulo integer not null,
-	descripcion varchar(50),
-	cantidad integer not null,     
-       total decimal (11,2) not null,   
-       FOREIGN KEY (idcliente) REFERENCES cliente (idcliente) ON DELETE CASCADE,
-       FOREIGN KEY (idarticulo) REFERENCES articulo (idarticulo) ON DELETE CASCADE,
-       FOREIGN KEY (idusuario) REFERENCES usuario (idusuario) ON DELETE CASCADE       
-);
+
 
 CREATE TABLE cotizaciones (
        id_cotizacion serial PRIMARY KEY,

@@ -8,6 +8,7 @@ import { cop } from "../../utils/i18";
 import notify from "../../utils/notify";
 import { useNavigate } from "react-router-dom";
 
+
 const DATA = {
   id_cotizacion: 0,
   valor: 0,
@@ -119,10 +120,10 @@ const Factura = () => {
               <tbody>
                 {data.products.map((item, key) => (
                   <tr key={`product_${key}`}>
-                    <td>{item.cantidad}</td>
-                    <td>{item.producto}</td>
-                    <td>{item.subtotal}</td>
-                    <td>{item.total}</td>
+                     <td>{item.cantidad }</td>
+                    <td>{item.producto }</td>
+                    <td>{(cop(item.subtotal))}</td>
+                    <td>{(cop(item.total))}</td>
                   </tr>
                 ))}
               </tbody>

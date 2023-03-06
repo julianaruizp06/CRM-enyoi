@@ -21,6 +21,8 @@ import notify from "../utils/notify";
 import { useNavigate } from "react-router-dom";
 import Edit from "./Modals/Cotizaciones/Edit";
 
+
+
 const USER = {
   iddetalle: "",
   id_cotizacion: "",
@@ -236,7 +238,7 @@ const Cotizacion = (props) => {
         ? {
             ...item,
             cant: Number(cant),
-            precioT: Number(cant) * item.precioU,
+            precioT: Number(cant) * item.precioU
           }
         : item
     );
@@ -469,8 +471,8 @@ const Cotizacion = (props) => {
                             onChange={(e) => changeCant(e, item.id)}
                           />
                         </th>
-                        <th> {item.precioU} </th>
-                        <th className="text-center">{item.precioT} </th>
+                        <th> {(item.precioU)} </th>
+                        <th className="text-center">{(item.precioT)} </th>
                         <th>
                           <Button
                             className="eLiminar"

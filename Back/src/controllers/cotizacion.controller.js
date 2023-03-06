@@ -1,7 +1,8 @@
 const pool = require("../../db");
+
 //FUNCION PARA MODIFICAR UNA COTIZACION
 const updateCotizacionDetail = async (req, res) => {
-  const { id_cotizacion, articulos, idclient } = req.body;
+  const { id_cotizacion, articulos, idclient, descuento, costo_envio, total_pagar } = req.body;
 
   // ELIMINO ALL PRODUCTOS DE LA FACTURA
   const QUERY = {
@@ -17,15 +18,13 @@ const updateCotizacionDetail = async (req, res) => {
   articulos.forEach((item) => {
     totales.push(item.total);
     const QUERY2 = {
-      text: `INSERT INTO detalles_cotizacion (id_cotizacion,idarticulo,cantidad,subtotal,
-        descuento,costo_envio,total) VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+      text: `INSERT INTO detalles_cotizacion (id_cotizacion,idarticulo,cantidad,subtotal,total) VALUES ($1,$2,$3,$4,$5)`,
       values: [
         item.id_cotizacion,
         item.idarticulo,
         item.cantidad,
         item.subtotal,
-        item.descuento,
-        item.costo_envio,
+     
         item.total,
       ],
     };
@@ -38,9 +37,13 @@ const updateCotizacionDetail = async (req, res) => {
 
   // INSERTAR UNA COTIZACION
   const QUERY3 = {
-    text: `UPDATE cotizaciones SET valor = $1, idcliente = $2 WHERE id_cotizacion = $3`,
-    values: [valorCotizacion, idclient, id_cotizacion],
+    text: `UPDATE cotizaciones SET valor = $1, idcliente = $2, descuento=$4, costo_envio = $5 , total_pagar = $6 WHERE id_cotizacion = $3`  ,
+
+  
+
+    values: [Number(valorCotizacion), idclient, id_cotizacion, descuento, costo_envio,total_pagar]
   };
+  console.log(valorCotizacion, idclient, id_cotizacion)
 
   pool.query(QUERY3);
 
@@ -50,12 +53,7 @@ const updateCotizacionDetail = async (req, res) => {
 //VER UNA COTIZACION CON SU DETALLE//TRAEMOS LA INFORMACION DEL USUARIO Y EL CLIENTE
 const getSingleCotizacionDetail = async (req, res) => {
   const QUERY = {
-    /*   text: `SELECT detalle.id_cotizacion, detalle.valor, usuario.nombre as vendedor, 
-      cliente.nombre as cliente, cliente.email as client_email, cliente.idcliente
-      FROM cotizaciones detalle
-      JOIN usuario ON usuario.idusuario = detalle.idusuario
-      JOIN cliente ON cliente.idcliente = detalle.idcliente
-      WHERE detalle.id_cotizacion = $1`, */
+   
 
     text: `SELECT detalle.id_cotizacion, detalle.valor, usuario.nombre as vendedor, 
       cliente.nombre as cliente, cliente.email as client_email, cliente.idcliente, co.total_pagar, co.descuento, co.costo_envio
@@ -127,9 +125,10 @@ const crearCotizacion = async (req, res) => {
   } = req.body;
 
   const QUERY = {
-    text: "INSERT INTO cotizaciones (idcliente,idusuario, valor,descuento, costo_envio,total_pagar) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+    text: "INSERT INTO cotizaciones (idcliente,idusuario, valor, descuento, costo_envio, total_pagar) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
     values: [idcliente, idusuario, valor, descuento, costo_envio, total_pagar],
   };
+  console.log(idcliente, idusuario, valor, descuento, costo_envio, total_pagar,)
   const { rows } = await pool.query(QUERY);
 
   articulos.forEach((item) => {

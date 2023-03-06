@@ -86,7 +86,7 @@ const sendCotizacion = async ({ body } = req, res) => {
 <h3> Te compartimos la cotización solicitada: </h3>
 <h2>Cotización # ${cotizacionData.id_cotizacion}</h2>
 
-<h3>Cotización generada por ${cotizacionData.vendedor}   por un total de: $ ${cotizacionData.total_pagar}</h3>
+<h3>Cotización generada por nuestro asesor de ventas ${cotizacionData.vendedor}   por un total de: $ ${cotizacionData.total_pagar}</h3>
 
 
 

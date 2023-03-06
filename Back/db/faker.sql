@@ -36,12 +36,3 @@ INSERT INTO cliente (nombre,tipo_documento, num_documento,direccion,telefono,ema
 VALUES('luis Jaramillo','CC','34500000','Bogota','31016768677','luis@fruver.com',true);
 INSERT INTO cliente (nombre,tipo_documento, num_documento,direccion,telefono,email,estado)
 VALUES('Mariana Velez','CC','25600000','Bogota','310187686','mariana@fruver.com',true);
-
-INSERT INTO venta (idcliente,idusuario,idarticulo,descripcion,cantidad,total)
-VALUES (1,1,1,'MANGO TOMY',2,100000);
-
-INSERT INTO cotizaciones(idcliente,idusuario,valor)
-VALUES(1,1, 40000);
-
-INSERT INTO detalles_cotizacion (id_cotizacion,idarticulo,cantidad,subtotal,descuento,costo_envio,total)
-VALUES(1,1,2,100000,0.2,10000,90000)
