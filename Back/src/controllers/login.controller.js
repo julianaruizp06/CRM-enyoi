@@ -4,6 +4,7 @@ const { Pool } = require("pg");
 const pool = require("../../db");
 const jwt = require("jsonwebtoken");
 const config = require("../../confi");
+const bcrypt =require("bcryptjs")
 
 // token generado
 
@@ -15,7 +16,7 @@ const verifyToken = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    console.log(authHeader);
+   
     if (token == null) return res.status(401).send("Token requerido");
     jwt.verify(token, TOKEN_KEY, (err, user) => {
       if (err) return res.status(403).send("Token invalido");
@@ -33,15 +34,23 @@ const verifyToken = (req, res, next) => {
 const validarLogin = async (req, res) => {
   try {
     const { usuario, contrasenia } = req.body;
+
     if (usuario && contrasenia) {
       const exisUsu = await pool.query(
         ` SELECT  * FROM login WHERE usuario='${usuario}' `
       );
       const usuarioDb = exisUsu.rows[0];
+     
+
+      
 
       if (usuarioDb) {
-        if (usuarioDb.contrasenia === contrasenia) {
+      
+        if (await bcrypt.compare(contrasenia, usuarioDb.contrasenia)) {
+        
+        
           const token = jwt.sign(
+
             { userId: usuario, contrasenia: contrasenia },
             "x4TvnErxRETbVcqaLl5dqMI115eNlp5y",
             { expiresIn: "2h" }
@@ -71,10 +80,15 @@ const validarLogin = async (req, res) => {
 const crearLogin = async (req, res) => {
   try {
     const { idrol, idusuario, usuario, contrasenia } = req.body;
+    const hashContrasenia = await bcrypt.hash(contrasenia,7)
+
+    console.log(hashContrasenia)
 
     const result =
       await pool.query(`INSERT INTO login(idusuario,idrol, usuario, contrasenia)
-    VALUES ('${idusuario}', '${idrol}', '${usuario}', '${contrasenia}')`);
+    VALUES ('${idusuario}', '${idrol}', '${usuario}', '${hashContrasenia}')`);
+
+  
 
     return res.send(result.rows);
   } catch (error) {

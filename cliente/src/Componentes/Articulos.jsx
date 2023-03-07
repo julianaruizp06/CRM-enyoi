@@ -30,19 +30,27 @@ const Articulo = (props) => {
 
   //funcion para ver la lista de articulos
   const listarArticulo = async () => {
-    const res = await axios.get(url);
-    if (res) {
-      setArticulo(res.data || []);
+    try {
+      const res = await axios.get(url);
+      if (res) {
+        setArticulo(res.data || []);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
   //crear articulo y editar
   //capturo los datos del formulario y los guardo
   const handleInputChange = ({ target }) => {
-    setSelected({
-      ...selected,
-      [target.name]: target.value,
-    });
+    try {
+      setSelected({
+        ...selected,
+        [target.name]: target.value,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   //verifico que los campos del formulario esten todos llenos
@@ -62,22 +70,30 @@ const Articulo = (props) => {
   //ACTUALIZAR ARTICULO
 
   const actualizarArticulo = async () => {
-    const res = await axios.put(url, selected);
+    try {
+      const res = await axios.put(url, selected);
 
-    if (res) {
-      notify();
-      setSelected({});
-      setModaledit(!modaledit);
-      listarArticulo();
+      if (res) {
+        notify();
+        setSelected({});
+        setModaledit(!modaledit);
+        listarArticulo();
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
   //ELIMINARR ARTICULO
   const eliminarArticulo = async (id) => {
-    const res = await axios.delete(`${url}/${id}`);
-    if (res) {
-      notify();
-      listarArticulo();
+    try {
+      const res = await axios.delete(`${url}/${id}`);
+      if (res) {
+        notify();
+        listarArticulo();
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

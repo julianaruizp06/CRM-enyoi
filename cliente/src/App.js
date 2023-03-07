@@ -14,7 +14,7 @@ import Factura from './Componentes/Factura/Factura';
 
 const usuario = getLocalStorage(types.USER) || {};
 
-console.log(usuario)
+
 
 function App() {
   const [user, setUser] = useState(usuario)

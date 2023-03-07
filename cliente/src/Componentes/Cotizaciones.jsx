@@ -194,11 +194,16 @@ const Cotizacion = (props) => {
   //eliminar cotizacion
 
   const dropCotizacion = async (id) => {
-    const res = await axios.delete(`${url}/${id}`);
-    if (res) {
-      notify();
-      listarCotizaciones();
+    try {
+      const res = await axios.delete(`${url}/${id}`);
+      if (res) {
+        notify();
+        listarCotizaciones();
+      }
+    } catch (error) {
+      console.error(error);
     }
+   
   };
 
   //ELIMINAR FILAS DE LA TABLA  AGREGAR ARTICULOS

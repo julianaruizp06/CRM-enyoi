@@ -8,6 +8,9 @@ const Dashboard = (props) => {
   const navigate = useNavigate();
 
   function cerrarSesion() {
+    localStorage.removeItem("USER")
+    localStorage.removeItem("tokenjwt")
+
     navigate("/");
   }
 

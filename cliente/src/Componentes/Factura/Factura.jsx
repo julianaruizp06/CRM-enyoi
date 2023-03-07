@@ -56,6 +56,7 @@ const Factura = () => {
       notify();
       atras();
     }
+    
     button.style.display = "block";
   };
   const navigate = useNavigate();

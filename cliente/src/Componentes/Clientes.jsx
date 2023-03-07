@@ -35,10 +35,15 @@ const Cliente = (props) => {
 
   //funcion para ver la lista de clientes
   const listarCliente = async () => {
-    const res = await axios.get(url);
-    if (res) {
-      setCliente(res.data || []);
+    try {
+      const res = await axios.get(url);
+      if (res) {
+        setCliente(res.data || []);
+      }
+    } catch (error) {
+      console.error(error);
     }
+   
   };
 
   useEffect(() => {
@@ -56,7 +61,9 @@ const Cliente = (props) => {
 
   //verifico que los campos del formulario esten todos llenos
   const handleSubmit = async (e) => {
-    e.preventDefault();
+
+    try {
+      e.preventDefault();
     if (!e.target.checkValidity()) {
     } else {
       let res = await axios.post(url, selected);
@@ -65,12 +72,17 @@ const Cliente = (props) => {
         listarCliente();
       }
     }
+    } catch (error) {
+      console.error(error);
+    }
+    
   };
 
   //ACTUALIZAR  CLIENTES
 
   const actualizarCliente = async () => {
-    const res = await axios.put(url, selected);
+    try {
+      const res = await axios.put(url, selected);
 
     if (res) {
       notify();
@@ -78,15 +90,25 @@ const Cliente = (props) => {
       setModaledit(!modaledit);
       listarCliente();
     }
+    } catch (error) {
+      console.error(error);
+    }
+    
   };
 
   //ELIMIANR CLIENTE
   const eliminarCliente = async (id) => {
-    const res = await axios.delete(`${url}/${id}`);
+    try {
+      const res = await axios.delete(`${url}/${id}`);
     if (res) {
       notify();
       listarCliente();
     }
+      
+    } catch (error) {
+      console.error(error);
+    }
+    
   };
 
   //Buscar CLIENTE

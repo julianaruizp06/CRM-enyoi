@@ -30,11 +30,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
   const [selClient, setSelClient] = useState(false);
   const [costoEnvio, setCostoEnvio] = useState("");
   const [descuento, setDescuento] = useState("");
-/*   cosnt [totalpagar, set] */
-
-
-
-
+  /*   cosnt [totalpagar, set] */
 
   useEffect(() => {
     if (id) {
@@ -49,122 +45,125 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
     await getCotizacion();
   };
 
-
-///descuento
+  ///descuento
 
   const setDescuentoParse = (valor) => {
     const valorDescuento = {
-      20:1,
-      30:2,
-      50:3,
+      20: 1,
+      30: 2,
+      50: 3,
     };
     return valorDescuento[valor];
   };
 
-  
   const setCosto_envioParse = (valor) => {
-
-   
     const Costo_envio = {
-      "5000.00":"1",
-      "6000.00":"2",
-      "7000.00":"3",
+      "5000.00": "1",
+      "6000.00": "2",
+      "7000.00": "3",
     };
     return Costo_envio[valor];
   };
 
   const setCosto_envioBack = (valor) => {
+    const Costo_envio = {
+      1: 5000,
+      2: 6000,
+      3: 7000,
+    };
 
-  
-      const Costo_envio = {
-        1: 5000,
-        2: 6000,
-        3: 7000,
-      };
-      
-      return Costo_envio[valor]
+    return Costo_envio[valor];
   };
 
   const setdescuentoBack = (valor) => {
-
-  
     const valorDescuento = {
-      1:20,
-      2:30,
-      3:50,
+      1: 20,
+      2: 30,
+      3: 50,
     };
-    
+
     return valorDescuento[valor];
-};
-
-
+  };
 
   //FUNCION PARA TRAER UNA COTIZACION POR MEDIO DE UN PARAMETRO
   const getCotizacion = async () => {
-    const res = await axios.get(`${API}/${id}`);
-    if (res) {
-      setData(res.data || DATA);
+    try {
+      const res = await axios.get(`${API}/${id}`);
+      if (res) {
+        setData(res.data || DATA);
 
+        const descuentoParse = setDescuentoParse(res.data.descuento);
 
+        setDescuento(descuentoParse);
 
-      const descuentoParse= setDescuentoParse(res.data.descuento)      
+        const Costo_envioParse = setCosto_envioParse(res.data.costo_envio);
+        setCostoEnvio(Costo_envioParse);
 
-      setDescuento(descuentoParse,66);
+        setListaProductos(res.data.products || []);
 
-
-
-      const Costo_envioParse= setCosto_envioParse(res.data.costo_envio)
-      setCostoEnvio(Costo_envioParse);
-
-      console.log(Costo_envioParse)
-
-
-
-      setListaProductos(res.data.products || []);
-
-      setSelClient(res.data.idcliente || 0);
-      const select = document.getElementById("client");
-      select.value = res.data.idcliente;
+        setSelClient(res.data.idcliente || 0);
+        const select = document.getElementById("client");
+        select.value = res.data.idcliente;
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
   //FUNCIO PARA TRAER LA LISTA DE ARTICULOS
   const getArticulos = async () => {
-    const res = await axios.get("http://localhost:3001/articulo");
-    setArticulo([{}, ...res.data] || []);
+    try {
+      const res = await axios.get("http://localhost:3001/articulo");
+      setArticulo([{}, ...res.data] || []);
+    } catch (error) {
+      console.error(error);
+    }
   };
   //FUNCIO PARA TRAER LA LISTA DE CLIENTES
   const getCLients = async () => {
-    const res = await axios.get("http://localhost:3001/cliente");
-    setClients(res ? [{}, ...res.data] : []);
+    try {
+      const res = await axios.get("http://localhost:3001/cliente");
+      setClients(res ? [{}, ...res.data] : []);
+    } catch (error) {
+      console.error(error);
+    }
   };
   //FUNCIO PARA CAMBIAR EL ARTICULO
   const changeArt = (id, idFactura) => {
-    //RECIBIMOS COMO PARAMETRO EL ID DEL ARTICULO Y EL ID DE LA FACTURA
-    const articulo = articulos.find((item) => item.idarticulo == id);
-    const data = listaProductos.map((item) =>
-      item.iddetalle == idFactura
-        ? {
-            ...item,
-            idarticulo: id || 0,
-            cantidad: 1,
-            subtotal: id ? Number(articulo.precio_venta) : 0,
-            total: id ? articulo.precio_venta * 1 : 0,
-            producto: id ? articulo.nombre : "",
-          }
-        : item
-    );
-    setListaProductos(data);
-    document.getElementById(`cantidad_${idFactura}`).value = 1;
+    try {
+      //RECIBIMOS COMO PARAMETRO EL ID DEL ARTICULO Y EL ID DE LA FACTURA
+      const articulo = articulos.find((item) => item.idarticulo == id);
+      const data = listaProductos.map((item) =>
+        item.iddetalle == idFactura
+          ? {
+              ...item,
+              idarticulo: id || 0,
+              cantidad: 1,
+              subtotal: id ? Number(articulo.precio_venta) : 0,
+              total: id ? articulo.precio_venta * 1 : 0,
+              producto: id ? articulo.nombre : "",
+            }
+          : item
+      );
+      setListaProductos(data);
+      document.getElementById(`cantidad_${idFactura}`).value = 1;
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   //FUNCION PARA CAMBIAR LA CANTIDAD
   const changeCant = (value, idFactura) => {
-    const data = listaProductos.map((item) =>
-      item.iddetalle == idFactura
-        ? { ...item, cantidad: value, total: item.subtotal * value }
-        : item
-    );
-    setListaProductos(data);
+    try {
+      const data = listaProductos.map((item) =>
+        item.iddetalle == idFactura
+          ? { ...item, cantidad: value, total: item.subtotal * value }
+          : item
+      );
+      setListaProductos(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   //FUNCION PARA AÑADIR FILA PARA UN NUEVO ARTICULO
@@ -188,29 +187,23 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const costoBack = setCosto_envioBack(costoEnvio)
+    const costoBack = setCosto_envioBack(costoEnvio);
 
-    const descBack =setdescuentoBack(descuento)
-    console.log(costoBack)
+    const descBack = setdescuentoBack(descuento);
 
-      const valorDes = Number(data.valor - data.valor * (descuento / 100)); //valor del total con descuento
-      const costo_envio = Number(costoEnvio);
-      const total_pagar = Number(valorDes + costo_envio); //valorfinal a pagar
-    
-   
-      const payload = {
+    const valorDes = Number(data.valor - data.valor * (descuento / 100)); //valor del total con descuento
+    const costo_envio = Number(costoEnvio);
+    const total_pagar = Number(valorDes + costo_envio); //valorfinal a pagar
+
+    const payload = {
       articulos: listaProductos,
       id_cotizacion: data.id_cotizacion,
       idclient: selClient,
       descuento: Number(descBack),
       costo_envio: Number(costoBack),
-      total_pagar
-      
+      total_pagar,
     };
 
-    console.log(payload, 444444444);
-
-    
     const res = await axios.put("http://localhost:3001/cotizacion", payload);
     if (res) {
       notify();
@@ -224,9 +217,8 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
         <ModalHeader toggle={toggle}>Editar</ModalHeader>
 
         <div className="clientearticulo">
-
           <div className="buscarcliente">
-          <label className="scl"> Busca tu cliente </label>
+            <label className="scl"> Busca tu cliente </label>
             <Input
               className="buscarcliente"
               type="select"
@@ -354,8 +346,8 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
                         />
                       </div>
                     </th>
-                    <th className="pt-3"> {(cop(Number(item.subtotal)))} </th>
-                    <th className="pt-3">{(cop(Number(item.total)))} </th>
+                    <th className="pt-3"> {cop(Number(item.subtotal))} </th>
+                    <th className="pt-3">{cop(Number(item.total))} </th>
                     <th>
                       <Button
                         className="eLiminar"
