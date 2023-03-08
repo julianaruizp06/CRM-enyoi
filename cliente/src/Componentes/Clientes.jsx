@@ -275,6 +275,8 @@ const Cliente = (props) => {
                     <option value="Nit">NIT</option>
                   </select>
                 </div>
+                <br/>
+
                 <div className="col-md-12">
                   <label htmlFor="numero_documento">
                     <strong>Numero de documento</strong>
@@ -287,6 +289,7 @@ const Cliente = (props) => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <br/>
                 <label htmlFor="direccion">
                   <strong>Direccion</strong>
                 </label>
@@ -399,6 +402,7 @@ const Cliente = (props) => {
                   <option value="Nit">NIT</option>
                 </select>
               </div>
+              <br/>
               <div className="col-md-12">
                 <label htmlFor="numero_documento">
                   <strong>Numero de documento</strong>
@@ -412,6 +416,7 @@ const Cliente = (props) => {
                   value={selected.num_documento}
                 />
               </div>
+              <br/>
               <label htmlFor="direccion">
                 <strong>Direccion</strong>
               </label>

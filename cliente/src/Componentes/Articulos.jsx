@@ -331,6 +331,7 @@ const Articulo = (props) => {
                 onChange={handleInputChange}
                 value={selected.precio_venta}
               />
+                <br/>
               <label htmlFor="descripcion">
                 <strong>Descripción</strong>
               </label>

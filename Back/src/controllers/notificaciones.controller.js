@@ -82,15 +82,11 @@ const sendCotizacion = async ({ body } = req, res) => {
     generateEmail("cotizacion.pdf");
 
     const saludo = `
-<h1>Hola ${cotizacionData.cliente} ! </h1>
+<h1>Hola ${cotizacionData.cliente} . </h1>
 <h3> Te compartimos la cotización solicitada: </h3>
 <h2>Cotización # ${cotizacionData.id_cotizacion}</h2>
 
-<h3>Cotización generada por nuestro asesor de ventas ${cotizacionData.vendedor}   por un total de: $ ${cotizacionData.total_pagar}</h3>
-
-
-
-`;
+<h3>Cotización generada por nuestro asesor de ventas ${cotizacionData.vendedor}   por un total de: $ ${cotizacionData.total_pagar}</h3>`;
 
     await transporter.sendMail({
       from: '"Fred Foo 👻" <cartera@juliana.com>',
@@ -108,8 +104,7 @@ const sendCotizacion = async ({ body } = req, res) => {
   } catch (error) {
     res.status(400);
     res.send({ message: error.message });
-  }
-};
+  }};
 
 module.exports = {
   sendCotizacion,

@@ -80,9 +80,10 @@ const validarLogin = async (req, res) => {
 const crearLogin = async (req, res) => {
   try {
     const { idrol, idusuario, usuario, contrasenia } = req.body;
+    // hassheamos la contraseña
     const hashContrasenia = await bcrypt.hash(contrasenia,7)
 
-    console.log(hashContrasenia)
+  
 
     const result =
       await pool.query(`INSERT INTO login(idusuario,idrol, usuario, contrasenia)

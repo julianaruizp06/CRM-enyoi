@@ -46,19 +46,18 @@ const Factura = () => {
   };
 
   const sendEmail = async () => {
-    const button = document.getElementById("button_send");
-    document.getElementsByTagName("noscript")[0].style.display = "none";
-    button.style.display = "none";
 
     const res = await axios.post(API_NOTIFICACION, dataEmail);
 
+  
     if (res) {
       notify();
       atras();
     }
-    
-    button.style.display = "block";
+  
+  
   };
+  
   const navigate = useNavigate();
 
   function atras() {

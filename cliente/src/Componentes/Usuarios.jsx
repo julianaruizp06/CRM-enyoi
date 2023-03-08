@@ -308,7 +308,7 @@ const Usuario = (props) => {
                     </select>
                   </div>
                 </div>
-                <br />
+                
                 <div id="oplogin" className="nombre">
                   <label htmlFor="nombre">
                     <strong>Nombre</strong>
@@ -330,8 +330,9 @@ const Usuario = (props) => {
                     <label>
                       <strong> Tipo de identificación</strong>
                     </label>
+                    <br/>
                     <select
-                      className="form-control"
+                      className="form-control mb-4"
                       name="tipo_documento"
                       id="tipo_documento"
                       onChange={handleInputChange}
@@ -349,13 +350,15 @@ const Usuario = (props) => {
                     </select>
                   </div>
                 </div>
-                <br />
+                <br/>
+                
 
                 <div className="col-md-12">
                   <div id="oplogin" className="numero_documento">
+                 
                     <label htmlFor="numero_documento">
                       <strong>Número de documento</strong>
-                    </label>
+                    </label>                    
                     <input
                       pattern="[0-9]"
                       maxlength="10"
@@ -368,7 +371,7 @@ const Usuario = (props) => {
                     />
                   </div>
                 </div>
-                <br />
+                <br/>
 
                 <div className="col-md-12">
                   <div id="oplogin" className="direccion">
@@ -519,6 +522,7 @@ const Usuario = (props) => {
                   <option value="Nit">NIT</option>
                 </select>
               </div>
+              <br/>
               <div className="col-md-12">
                 <label htmlFor="numero_documento">
                   <strong>Numero de documento</strong>
@@ -533,6 +537,7 @@ const Usuario = (props) => {
                   required
                 />
               </div>
+              <br/>
               <label htmlFor="direccion">
                 <strong>Direccion</strong>
               </label>
