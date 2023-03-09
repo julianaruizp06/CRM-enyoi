@@ -148,7 +148,7 @@ const Articulo = (props) => {
         <p>
           <h5>
             En este módulo puedes agregar, editar y eliminar los diferentes
-            articulos del sistema.{" "}
+            artículos del sistema.{" "}
           </h5>
         </p>
 
@@ -163,14 +163,14 @@ const Articulo = (props) => {
             type="search"
             id="searchA"
             onChange={searchUser}
-            placeholder=" ¿ Qué articulo buscas ?"
+            placeholder=" ¿ Qué artículo buscas ?"
           />
           <Button
             id="btn_agregar"
             className="btn btn-success"
             onClick={() => toggle()}
           >
-            <AiOutlineUserAdd /> Agregar articulo
+            <AiOutlineUserAdd /> Agregar artículo
           </Button>
         </div>
       </header>
@@ -220,7 +220,7 @@ const Articulo = (props) => {
       </table>
       <div>
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Agregar Nuevo Articulo</ModalHeader>
+          <ModalHeader toggle={toggle}>Agregar Nuevo Artículo</ModalHeader>
           <ModalBody>
             <div className="form-group">
               <Form
@@ -253,9 +253,12 @@ const Articulo = (props) => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <br />
                 <label htmlFor="direccion">
                   <strong>Descripción</strong>
                 </label>
+                <br />
+
                 <input
                   className="form-control"
                   type="text"
@@ -298,7 +301,7 @@ const Articulo = (props) => {
       {/* Modal editar */}
 
       <Modal isOpen={modaledit} id="editar" toggle={toggleedit}>
-        <ModalHeader toggle={toggleedit}>Editar Articulo</ModalHeader>
+        <ModalHeader toggle={toggleedit}>Editar Artículo</ModalHeader>
         <ModalBody>
           <div className="form-group">
             <Form

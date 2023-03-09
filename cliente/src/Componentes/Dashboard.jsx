@@ -58,13 +58,13 @@ const Dashboard = (props) => {
                 Clientes
               </a>
               <a href=" " onClick={vistaArticulos}>
-                Articulos
+                Artículos
               </a>
               <a href=" " onClick={vistaCotizacion}>
                 Cotizaciones
               </a>
               <a href=" " onClick={cerrarSesion}>
-                Cerrar sesion
+                Cerrar sesión
               </a>
             </nav>
           </div>

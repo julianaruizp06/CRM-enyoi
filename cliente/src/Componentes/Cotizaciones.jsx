@@ -380,7 +380,7 @@ const Cotizacion = (props) => {
                 id="agregarArM"
                 onClick={() => agreArt()}
               >
-                + Agregar Articulo
+                + Agregar Artículo
               </Button>
             </div>
           </div>
@@ -405,7 +405,7 @@ const Cotizacion = (props) => {
 
             <div className="costoenvio">
               <div id="oplogin" className="costoenvio">
-                <label>Costo de envio</label>
+                <label>Costo de envío</label>
 
                 <select
                   className="costoenvio"

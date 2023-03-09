@@ -6,6 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  
   Form,
 } from "reactstrap";
 import { FaEdit } from "react-icons/fa";
@@ -376,7 +377,7 @@ const Usuario = (props) => {
                 <div className="col-md-12">
                   <div id="oplogin" className="direccion">
                     <label htmlFor="direccion">
-                      <strong>Direccion</strong>
+                      <strong>Dirección</strong>
                     </label>
                     <input
                       className="form-control"
@@ -392,7 +393,7 @@ const Usuario = (props) => {
                 <div className="col-md-12">
                   <div id="oplogin" className="telefono">
                     <label htmlFor="telefono">
-                      <strong>Telefono</strong>
+                      <strong>Teléfono</strong>
                     </label>
 
                     <input
@@ -525,7 +526,7 @@ const Usuario = (props) => {
               <br/>
               <div className="col-md-12">
                 <label htmlFor="numero_documento">
-                  <strong>Numero de documento</strong>
+                  <strong>Número de documento</strong>
                 </label>
                 <input
                   className="form-control"
@@ -539,7 +540,7 @@ const Usuario = (props) => {
               </div>
               <br/>
               <label htmlFor="direccion">
-                <strong>Direccion</strong>
+                <strong>Dirección</strong>
               </label>
               <input
                 className="form-control"
@@ -552,7 +553,7 @@ const Usuario = (props) => {
               />
               <br />
               <label htmlFor="telefono">
-                <strong>Telefono</strong>
+                <strong>Teléfono</strong>
               </label>
               <input
                 className="form-control"

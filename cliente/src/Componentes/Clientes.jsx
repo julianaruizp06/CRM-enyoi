@@ -279,7 +279,7 @@ const Cliente = (props) => {
 
                 <div className="col-md-12">
                   <label htmlFor="numero_documento">
-                    <strong>Numero de documento</strong>
+                    <strong>Número de documento</strong>
                   </label>
                   <input
                     className="form-control"
@@ -291,7 +291,7 @@ const Cliente = (props) => {
                 </div>
                 <br/>
                 <label htmlFor="direccion">
-                  <strong>Direccion</strong>
+                  <strong>Dirección</strong>
                 </label>
                 <input
                   className="form-control"
@@ -302,7 +302,7 @@ const Cliente = (props) => {
                 />
                 <br />
                 <label htmlFor="telefono">
-                  <strong>Telefono</strong>
+                  <strong>Teléfono</strong>
                 </label>
                 <input
                   className="form-control"
@@ -405,7 +405,7 @@ const Cliente = (props) => {
               <br/>
               <div className="col-md-12">
                 <label htmlFor="numero_documento">
-                  <strong>Numero de documento</strong>
+                  <strong>Número de documento</strong>
                 </label>
                 <input
                   className="form-control"
@@ -418,7 +418,7 @@ const Cliente = (props) => {
               </div>
               <br/>
               <label htmlFor="direccion">
-                <strong>Direccion</strong>
+                <strong>Dirección</strong>
               </label>
               <input
                 className="form-control"
@@ -430,7 +430,7 @@ const Cliente = (props) => {
               />
               <br />
               <label htmlFor="telefono">
-                <strong>Telefono</strong>
+                <strong>Teléfono</strong>
               </label>
               <input
                 className="form-control"

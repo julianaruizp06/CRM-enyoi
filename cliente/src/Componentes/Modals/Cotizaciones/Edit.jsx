@@ -212,6 +212,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
   };
 
   return (
+    <div className="modalcotiza">
     <Modal isOpen={isOpen} toggle={toggle} size="lg">
       <Form onSubmit={handleSubmit}>
         <ModalHeader toggle={toggle}>Editar</ModalHeader>
@@ -240,7 +241,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
               id="agregarArM"
               onClick={() => addRow()}
             >
-              + Agregar Articulo
+              + Agregar Artículo
             </Button>
           </div>
         </div>
@@ -266,7 +267,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
 
           <div className="costoenvio">
             <div id="oplogin" className="costoenvio">
-              <label>Costo de envio</label>
+              <label>Costo de envío</label>
 
               <select
                 className="costoenvio"
@@ -288,19 +289,20 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
 
         <ModalBody>
           <div className="form-group">
-            <table
-              className="table"
-              id="table"
-              style={{ marginTop: 60, background: "white" }}
-            >
-              <thead className="bg-secondary text-white">
+          <Form>
+          <table
+                  className="table"
+                  id="table"
+                  style={{ marginTop: 24, background: "white" }}
+                >
+              <thead>
                 <tr>
                   <th className="text-center">#</th>
-                  <th className="text-center"> Articulo</th>
+                  <th className="text-center"> Artículo</th>
                   <th className="text-center">Cantidad</th>
                   <th className="text-center">Precio Unitario</th>
                   <th className="text-center">Precio Total</th>
-                  <th className="text-center">Borrar</th>
+                  <th className="text-center"></th>
                 </tr>
               </thead>
               <tbody>
@@ -362,6 +364,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
                 ))}
               </tbody>
             </table>
+            </Form>
           </div>
         </ModalBody>
         <ModalFooter>
@@ -374,6 +377,7 @@ const Edit = ({ isOpen, toggle, id, idUser }) => {
         </ModalFooter>
       </Form>
     </Modal>
+    </div>
   );
 };
 

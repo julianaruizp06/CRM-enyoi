@@ -84,7 +84,7 @@ return(
         autoComplete="off"
         >
            <div className=""> 
-        <p>Iniciar sesion </p>
+        <p>Iniciar sesión </p>
         </div>
     
  
@@ -114,7 +114,7 @@ return(
       <button
             type="submit">           
         Ingresar</button>
-      <p  className="message">No resgistrado? <a href="#">Crear una cuenta</a></p>
+      <br/>
     </form>
   </div>
 </div>
